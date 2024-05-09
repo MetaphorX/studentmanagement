@@ -1,21 +1,32 @@
 import {Routes, Route} from 'react-router-dom'
-import Navbar from './components/Navbar';
-import Appointment from './pages/appointment';
-import Home from './pages/home';
-import Login from './pages/login';
-import Tips from './pages/tips';
-import Admin from './pages/admin';
+import Navigation from './components/Navigation';
+
+import Home from './pages/Home';
+import Students from './pages/Students';
+import Courses from './pages/Courses';
+import Scores from './pages/Scores';
+import AddStaff from './pages/AddStaff';
+import AddStudent from './pages/AddStudent';
+import AddCourses from './pages/AddCourses';
+import Staff from './pages/Staff';
+import SingleStudent from './pages/SingleStudent';
 
 function App() {
   return (
     <>
-    <Navbar/>
+    <Navigation />
       <Routes>
         <Route path={'/'} element={<Home />}/>
-        <Route path={'/login'} element={<Login />}/>
-        <Route path={'/appointment'} element={<Appointment />}/>
-        <Route path={'/tips'} element={<Tips />}/>
-        <Route path={'/admin'} element={<Admin />}/>
+        <Route path={'/students'} element={<Students />}/>
+        <Route path={'/courses'} element={<Courses />}/>
+        <Route path={'/add-staff'} element={<AddStaff />}/>
+        <Route path={'/add-student'} element={<AddStudent />}/>
+        <Route path={'/add-courses'} element={<AddCourses />}/>
+        <Route path={'/scores'} element={<Scores />}/>
+        <Route path={'/staff'} element={<Staff />}/>
+        <Route path={'/single-student'} element={<SingleStudent />}/>
+        
+
       </Routes>
     </>
   );
