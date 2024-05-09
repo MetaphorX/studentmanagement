@@ -1,6 +1,15 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
+import { client } from "../utility/client";
+import { courseQuery } from "../utility/lib";
 
 const Courses = () => {
+  const [items, setItems] = useState([])
+
+  useEffect(() =>{
+    client.fetch(courseQuery)
+      .then((data) => setItems(data))
+  },[courseQuery])
+
   return (
     <>
       <div class="content-wrapper">
@@ -53,108 +62,27 @@ const Courses = () => {
                         <tr>
                           <th>ID</th>
                           <th>Course Title</th>
-                          <th>Date Initiated</th>
+                          <th>Course Code</th>
                           <th>Status</th>
                           <th>Reason</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>183</td>
-                          <td>John Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-success">Approved</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>219</td>
-                          <td>Alexander Pierce</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-warning">Pending</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>657</td>
-                          <td>Bob Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-primary">Approved</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>175</td>
-                          <td>Mike Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-danger">Denied</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>134</td>
-                          <td>Jim Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-success">Approved</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>494</td>
-                          <td>Victoria Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-warning">Pending</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>832</td>
-                          <td>Michael Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-primary">Approved</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>982</td>
-                          <td>Rocky Doe</td>
-                          <td>11-7-2009</td>
-                          <td>
-                            <span class="tag tag-danger">Denied</span>
-                          </td>
-                          <td>
-                            Bacon ipsum dolor sit amet salami venison chicken
-                            flank fatback doner.
-                          </td>
-                        </tr>
+                        {items.map((item) =>(
+                            <tr>
+                            <td>183</td>
+                            <td>{item.name}</td>
+                            <td>{item.code}</td>
+                            <td>
+                              <span class="tag tag-success">Approved</span>
+                            </td>
+                            <td>
+                                {item.description}
+                            </td>
+                          </tr>
+                        ))}
+                        
+                        
                       </tbody>
                     </table>
                   </div>
